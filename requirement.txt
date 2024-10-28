@@ -1,0 +1,11 @@
+matplotlib                                                                                                                                                                                            seaborn
+opencv-contrib-python
+cmake
+dlib
+face-recognition
+cvzone
+flask
+reportlab
+numpy
+pandas
+mysql-connector-python

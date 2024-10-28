@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today's Attendance</title>
+    <!-- Link to the CSS file -->
+    <link
+      href="{{ url_for('static', filename='styles/admin.css') }}"
+      rel="stylesheet"
+      type="text/css"
+    />
+</head>
+<body>
+    <div class="container">
+        <section class="attendance">
+            <div class="attendance-list">
+                <!-- Button to return to the admin_dashboard page -->
+                <button class="home_button" onclick="window.location.href='/admin_dashboard'">
+                    Dashboard
+                </button>
+
+                <h1>Today's Attendance</h1>
+
+                <!-- Link to download the attendance list as a CSV file -->
+                <a href="{{ url_for('static', filename='Files/attendance_list.csv') }}" download style="font-size:20px; color: black;">
+                    Download Attendance
+                </a>
+
+                <!-- Attendance table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Major</th>
+                            <th>Attendance Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in data %}
+                        <tr>
+                            <td>{{ student['student_id'] }}</td>
+                            <td>{{ student['name'] }}</td>
+                            <td>{{ student['major'] }}</td>
+                            <td>{{ student['attendance_time'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

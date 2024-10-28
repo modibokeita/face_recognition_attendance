@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link
+      href="{{ url_for('static', filename='styles/admin.css') }}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+          <li>
+            <a href="javascript:location.reload();" class="logo">
+              <img
+                src="{{ url_for('static', filename='Files/Resources/admin_icon.jpg') }}"
+              />
+              <span class="nav-item">Admin</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:location.reload();">
+              <i class="fas fa-menorah"></i>
+              <span class="nav-item">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/add_user">
+                <i class="fas fa-user-plus"></i>
+              <span class="nav-item">Add Student</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/cheaters">
+              <i class="fas fa-check"></i>
+              <span class="nav-item">View Cheater</span>
+            </a>
+          </li>
+          <li>
+            <a href="/student_attendance_list">
+              <i class="fas fa-check"></i>
+              <span class="nav-item">Attendance List</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin_login" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item">Log out</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="main">
+        <div class="main-top">
+            <h1>Enrolled Students for Year {{ current_year }}</h1>
+        </div>
+        <div class="users">
+          {% for student in data %}
+            <div class="card">
+              <img
+                src="{{ url_for('static', filename='Files/Images/' + student['id'] + '.png') }}"
+                alt="{{ student['name'] }}"
+              />
+              <h4>{{ student['name'] }}</h4>
+              <p>{{ student['major'] }} Student</p>
+              <div class="per">
+              </div>
+              <form method="POST" action="/admin/edit_user">
+                <button
+                  class="edit_student"
+                  type="submit"
+                  name="edit_student"
+                  value="{{ student['id'] }}"
+                >
+                  View More
+                </button>
+              </form>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

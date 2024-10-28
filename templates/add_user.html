@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link
+        href="{{ url_for('static', filename='styles/admin.css') }}"
+        rel="stylesheet"
+        type="text/css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+        href="{{ url_for('static', filename='styles/add_user.css') }}"
+        rel="stylesheet"
+        type="text/css"
+    />
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="/admin_dashboard" class="logo">
+                        <img
+                            src="{{ url_for('static', filename='Files/Resources/admin_icon.jpg') }}"
+                        />
+                        <span class="nav-item">Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin_dashboard">
+                        <i class="fas fa-menorah"></i>
+                        <span class="nav-item">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin_login" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <br />
+        <br />
+        <section class="container1">
+            <header>Add Student</header>
+            <form
+                action="/admin/add_user"
+                method="post"
+                class="form"
+                enctype="multipart/form-data"
+            >
+                <div class="input-box">
+                    <label>ID</label>
+                    <input
+                        type="text"
+                        placeholder="Enter the student unique ID"
+                        name="id"
+                        required
+                    />
+                </div>
+                <div class="input-box">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        placeholder="Enter full name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div class="input-box">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        placeholder="Enter the password"
+                        name="password"
+                        required
+                    />
+                </div>
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input
+                        type="email"
+                        placeholder="Enter email address"
+                        name="email"
+                        required
+                    />
+                </div>
+                <div class="input-box">
+                    <label>Major</label>
+                    <input
+                        type="text"
+                        placeholder="Enter the Major"
+                        name="major"
+                        required
+                    />
+                </div>
+                <div class="input-box">
+                    <label>Upload Image</label>
+                    <input
+                        type="file"
+                        name="image"
+                        required
+                    />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <button class="back" onclick="window.location.href='/admin_dashboard'">
+                Back
+              </button>
+        </section>
+    </div>
+</body>
+</html>
